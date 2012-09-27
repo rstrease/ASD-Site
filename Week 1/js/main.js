@@ -89,7 +89,8 @@ var getData = function(){
 var makeItemLinks = function(key, linksLi){
     var editLink = document.createElement('a');
     	editLink.setAttribute("id", "edbutton");
-    	editLink.href = "#";
+    	editLink.setAttribute("data-transition", "slide");
+    	editLink.href = "#additem";
     	editLink.key = key;
     var editText = "Edit Item";
     	editLink.addEventListener("click", editItem);
