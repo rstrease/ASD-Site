@@ -38,6 +38,24 @@ $('#additem').on('pageinit', function(){
         return false;
     });
 
+function toggleControls(n) {
+	switch (n) {
+		case "on":
+			$('#inputs').css('display', 'none');
+            $('#clear').css('display', 'inline');
+            $('#display').css('display', 'block');
+            break;
+        case "off":
+            $('#inputs').css('display', 'inline');
+            $('#clear').css('display', 'inline');
+            $('#display').css('display', 'inline');
+            $('#item').css('display', 'inline');
+            break;
+        default:
+        return false;
+        }
+}
+
 var autofillData = function (){
 	//store JSON data in actual storage
 	for(var n in json){
@@ -52,6 +70,7 @@ var ge = function (x){
 };
 
 var getData = function(){
+	toggleControls("on");
 	if(localStorage.length === 0){
         	alert("You have no data to display so default data will be added.");
         	autofillData();
@@ -142,10 +161,11 @@ var storeData = function(data){
 }; 
 
  var editItem = function(){
-    function editItem(){
     	//grab item data from local storage
     	var value = localStorage.getItem(this.key);
     	var item = JSON.parse(value);
+    	//show form
+    	toggleControls("off");
     	    	
     	$('#name').val(item.name[1]);
     	$('#selectType').val(item.selectType[1]);
@@ -156,10 +176,10 @@ var storeData = function(data){
     	$('#wpurchased').val(item.wpurchased[1]);
     	$('#price').val(item.price[1]);
     	$('#ev').val(item.ev[1]);
-
-    	ge('#qty').val(item.qty[1]);
-    	ge('#dateadded').val(item.dateadded[1]);
-    	ge('#notes').val(item.notes[1]);
+    	$('#condition').val(item.condition[1]);
+    	$('#qty').val(item.qty[1]);
+    	$('#dateadded').val(item.dateadded[1]);
+    	$('#notes').val(item.notes[1]);
     	
     	//remove listener from input 'add item' button
     	save.removeEventListener("click", storeData);
@@ -168,21 +188,19 @@ var storeData = function(data){
     	var editSubmit = $('#submit');
     	//save key value established
     	editSubmit.addEventListener("click", validate);
-    	editSubmit.key = this.key;
-    	
-    }	
+    	editSubmit.key = this.key;	
 };
 
 var clearLocal = function(){
 	if (localStorage.length === 0){
     		alert("You have no data to clear.");
-			$.mobile.changePage('#home', { transition: "slide"});			
+			$.mobile.changePage('#additem', { transition: "slide"});			
     	}
     	else{
     		localStorage.clear();
     		alert("Your contents have been deleted.");
-			$.mobile.changePage('#home', { transition: "slide"});
-			window.location.reload('#displayitem');
+			$.mobile.changePage('#additem', { transition: "slide"});
+			window.location.reload();
 		}
 	};
 
@@ -191,7 +209,7 @@ var	deleteItem = function (){
     	if(ask){
     		localStorage.removeItem(this.key);
     		alert("Item was deleted.");
-    		$.mobile.changePage('#home', { transition: "slide"});
+    		$.mobile.changePage('#additem', { transition: "slide"});
 			window.location.reload();
     	}
     	else{
