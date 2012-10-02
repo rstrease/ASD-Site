@@ -181,7 +181,7 @@ var storeData = function(data){
     	$('#dateadded').val(item.dateadded[1]);
     	$('#notes').val(item.notes[1]);
     	
-    	
+    	save.off('click', storeData);
     	//change submit value to edit
     	$('#submit').val("Edit Item");
     	var editSubmit = $('#submit');
