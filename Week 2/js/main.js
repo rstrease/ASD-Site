@@ -7,7 +7,7 @@ $('#additem').on('pageinit', function(){
 		var myForm = $('#toolForm');
 		    myForm.validate({
 			invalidHandler: function(form, validator) {
-			alert("Please fill in the following missing fields: ");
+			alert("Please fill in highlighted missing fields");
 			},
 			submitHandler: function() {
 		var data = $(".myForm").serializeArray();
@@ -38,24 +38,6 @@ $('#additem').on('pageinit', function(){
         return false;
     });
 
-function toggleControls(n) {
-	switch (n) {
-		case "on":
-			$('#inputs').css('display', 'none');
-            $('#clear').css('display', 'inline');
-            $('#display').css('display', 'block');
-            break;
-        case "off":
-            $('#inputs').css('display', 'inline');
-            $('#clear').css('display', 'inline');
-            $('#display').css('display', 'inline');
-            $('#item').css('display', 'inline');
-            break;
-        default:
-        return false;
-        }
-}
-
 var autofillData = function (){
 	//store JSON data in actual storage
 	for(var n in json){
@@ -64,66 +46,67 @@ var autofillData = function (){
 	}
 };
 
-var ge = function (x){
-        var element = document.getElementById(x);
-        return element;
-};
-
 var getData = function(){
-	toggleControls("on");
 	if(localStorage.length === 0){
         	alert("You have no data to display so default data will be added.");
         	autofillData();
         }
-	        var makeDiv = document.createElement('div');
-	        makeDiv.setAttribute("id", "items");
-	        var makeList = document.createElement('div');
-	        makeList.setAttribute("id", "ulList");
-	        makeDiv.appendChild(makeList);
-	        displayitem.appendChild(makeDiv);
-	        ge('items').style.display = "block";
+	        var makeDiv = $('<div>');
+	        makeDiv.attr("id", "items");
+	        var makeList = $('<div>');
+	        makeList.attr("id", "ulList");
+	        makeList.appendTo(makeDiv);
+			$('#displaydata').append(makeDiv);
+			$('#items').show();
 	        for(var i=0, len=localStorage.length; i<len; i++){
-	            var makeLi = document.createElement('li');
-	            makeLi.setAttribute("id", "mainLi");
-	            var linksLi = document.createElement('li');
-	            linksLi.setAttribute("id", "editDeleteLi");
-	            makeList.appendChild(makeLi);
+	            var makeLi = $('<li>');
+	            makeLi.attr("id", "mainLi");
+	            var linksLi = $('<li>');
+	            linksLi.attr("id", "editDeleteLi");
+	            makeList.append(makeLi);
 	            var key = localStorage.key(i);
 	            var value = localStorage.getItem(key);
 	            var obj = JSON.parse(value);
-	            var makeSubList = document.createElement('div');
-	            makeSubList.setAttribute("id", "subUl");
-	            makeLi.appendChild(makeSubList);
+	            var makeSubList = $('<div>');
+	            makeSubList.attr("id", "subUl");
+	            makeLi.append(makeSubList);
 	            for(var n in obj){
-	                var makeSubLi = document.createElement('li');
-	                makeSubList.appendChild(makeSubLi);
-	                var optSubText = obj[n][0]+" "+obj[n][1];
-	                makeSubLi.innerHTML = optSubText;
-	                makeLi.appendChild(linksLi);
+	                var makeSubLi = $('<li>');
+	                makeSubList.append(makeSubLi);
+	                var optSubText = obj[n][0]+ " " +obj[n][1];
+	                makeSubLi.html(optSubText);
+	                makeLi.append(linksLi);
             	}
 	            makeItemLinks(localStorage.key(i), linksLi); //create edit and delete buttons
             }
 };
 
 var makeItemLinks = function(key, linksLi){
-    var editLink = document.createElement('a');
-    	editLink.setAttribute("id", "edbutton");
-    	editLink.setAttribute("data-transition", "slide");
-    	editLink.href = "#additem";
+    var editLink = $('<a>');
+		editLink.attr("href", "#additem");
+		editLink.attr("data-role", "button");
+		editLink.attr("data-theme", "b");
+		editLink.attr("data-transition", "slide");
+		editLink.attr("data-direction", "reverse");
+		editLink.attr("style", "padding: 10px");
+		editLink.attr("class", "ui-btn ui-btn-up-b ui-shadow ui-btn-corner-all");
     	editLink.key = key;
-    var editText = "Edit Item";
-    	editLink.addEventListener("click", editItem);
-    	editLink.innerHTML = editText;
-    	linksLi.appendChild(editLink);
-    	
-    var deleteLink = document.createElement('a');
-    	deleteLink.setAttribute("id", "edbutton");
-    	deleteLink.href = "#";
+    var editText = "Edit Item ";
+    	editLink.on("click", editItem)
+				.html(editText)
+				.appendTo(linksLi);
+				
+    var deleteLink = $('<a>');
+    	deleteLink.attr("href", "#");
+		deleteLink.attr("data-role", "button");
+		deleteLink.attr("data-theme", "b");
+		deleteLink.attr("style", "padding: 10px");
+		deleteLink.attr("class", "ui-btn ui-btn-up-b ui-shadow ui-btn-corner-all");
     	deleteLink.key = key;
     var deleteText = "Delete Item";
-    	deleteLink.addEventListener("click", deleteItem);
-    	deleteLink.innerHTML = deleteText;
-    	linksLi.appendChild(deleteLink);
+    	deleteLink.on("click", deleteItem)
+				  .html(deleteText)
+				  .appendTo(linksLi);
 };
 
 var storeData = function(data){
@@ -135,24 +118,26 @@ var storeData = function(data){
     	id = key;
     }
 
-    var item = {};
-		item.name = ["Name:", $('#name').val()];
+    var item 			= {};
+		item.name 		= ["Name:", $('#name').val()];
         item.selectType = ["Tool/Item Type:", $('#selectType').val()];
-        item.make = ["Make:", $('#make').val()];
-        item.mnumber = ["Model Number:", $('#mnumber').val()];
-        item.snumber = ["Serial Number:", $('#snumber').val()];
+        item.make 		= ["Make:", $('#make').val()];
+        item.mnumber 	= ["Model Number:", $('#mnumber').val()];
+        item.snumber 	= ["Serial Number:", $('#snumber').val()];
         item.dpurchased = ["Date Purchased:", $('#dpurchased').val()];
         item.wpurchased = ["Where Purchased:", $('#wpurchased').val()];
-        item.price = ["Price:", $('#price').val()];
-        item.ev = ["Estimated Value:", $('#ev').val()];
-        item.condition = ["Purchase Type:", $('input[name=condition]:checked').val()];
-        item.qty = ["Quantity:", $('#qty').val()];
-        item.dateadded = ["Date Added:", $('#dateadded').val()];
-        item.notes = ["Additional notes:", $('#notes').val()];
+        item.price 		= ["Price:", $('#price').val()];
+        item.ev 		= ["Estimated Value:", $('#ev').val()];
+        item.condition 	= ["Purchase Type:", $('input[name=condition]:checked').val()];
+        item.qty 		= ["Quantity:", $('#qty').val()];
+        item.dateadded 	= ["Date Added:", $('#dateadded').val()];
+        item.notes 		= ["Additional notes:", $('#notes').val()];
 		
 		//save to local storage: use stringify to convert to string
+		console.log(id, item);
         localStorage.setItem(id, JSON.stringify(item));
         alert("Your item was stored successfully!");
+		
 		$('form#toolForm')[0].reset();
 		$('#qty').val('1').slider('refresh');
 	    $('#selectType').val('selection').selectmenu('refresh');
@@ -164,11 +149,9 @@ var storeData = function(data){
     	//grab item data from local storage
     	var value = localStorage.getItem(this.key);
     	var item = JSON.parse(value);
-    	//show form
-    	toggleControls("off");
-    	    	
+    	   	
     	$('#name').val(item.name[1]);
-    	//$('#selectType').val(item.selectType[1]).selectmenu();
+    	$('#selectType').val(item.selectType[1]).selectmenu();
     	$('#make').val(item.make[1]);
     	$('#mnumber').val(item.mnumber[1]);
     	$('#snumber').val(item.snumber[1]);
