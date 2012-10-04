@@ -204,7 +204,7 @@ $("#displayitem").on('pageinit',function(){
 	//json
 	$('#JSON').on('click', function() {
 		$('#displaydata').empty();
-		$('<p>').html('JSON Data').appendTo('#displaydata');
+		$('<h3>').html('JSON Data').appendTo('#displaydata');
 		$.ajax({
 			url: 'xhr/data.json',
 			type: 'GET',
@@ -215,7 +215,7 @@ $("#displayitem").on('pageinit',function(){
 					$(''+
 						'<ul class="ui-listview ui-listview-inset ui-corner-all ui-shadow" data-inset="true" data-role="listview">'+
 							'<li class="ui-li ui-li-static ui-btn-up-c ui-corner-top">'+
-									'<h3 class="ui-li-heading">'+"Name: "+ tools.name + '<br />'+'</h3>'+
+									'<h3 class="ui-li-heading">'+ tools.name + '<br />'+'</h3>'+
 									'<p class="ui-li-desc">'+"Tool/Item Type: "+ tools.select + '</p>'+
 									'<p class="ui-li-desc">'+"Make: "+ tools.make + '</p>'+
 									'<p class="ui-li-desc">'+"Model Number: "+ tools.mnumber + '</p>'+
@@ -242,7 +242,7 @@ $("#displayitem").on('pageinit',function(){
 	//XML
 	$('#XML').on('click', function() {
 		$('#displaydata').empty();
-		$('<p>').html('XML Data').appendTo('#displaydata');
+		$('<h3>').html('XML Data').appendTo('#displaydata');
 		$.ajax({
 			url: 'xhr/data.xml',
 			type: 'GET',
@@ -267,7 +267,7 @@ $("#displayitem").on('pageinit',function(){
 					$(''+
 						'<ul class="ui-listview ui-listview-inset ui-corner-all ui-shadow" data-inset="true" data-role="listview">'+
 							'<li class="ui-li ui-li-static ui-btn-up-c ui-corner-top">'+
-								'<h3 class="ui-li-heading">'+"Name: "+ name +'</h3>'+
+								'<h3 class="ui-li-heading">'+ name +'</h3>'+
 								'<p class="ui-li-desc">'+"Tool/Item Type: "+ select + '</p>'+
 								'<p class="ui-li-desc">'+"Make: "+ make + '</p>'+
 								'<p class="ui-li-desc">'+"Model Number: "+ mnumber + '</p>'+
@@ -290,16 +290,57 @@ $("#displayitem").on('pageinit',function(){
 		});
 	});
 	
-	//csv
-	/*$('#CSV').on('click', function() {
+//CSV Data
+	$('#CSV').bind('click', function(){
 		$('#displaydata').empty();
-		$('<p>').html('CSV Data').appendTo('#displaydata');
+		$('<h3>').html('CSV Data').appendTo('#displaydata');
 		$.ajax({
-			url: 'xhr/data.csv',
-			type: 'GET',
-			dataType: 'text',
-			success: function(csv) {
-			)};
-		};
-	)};*/
+			type: "GET",
+			url: "xhr/data.csv",
+			dataType: "text",
+			success: function(data) {
+				var allTextLines = data.split(/\r\n|\n/);
+				var headers = allTextLines[0].split(',');
+				var lines = []; 
+
+			for (var i=1; i<allTextLines.length; i++) {
+				var data = allTextLines[i].split(',');
+			if (data.length == headers.length) {
+				var tools = []; 
+
+				for (var j=0; j<headers.length; j++) {
+					tools.push(data[j]);
+				}
+					lines.push(tools);
+				}	
+
+			}
+
+			for (var m=0; m<lines.length; m++){
+				var toolList = lines[m];
+			$(''+
+				'<ul class="ui-listview ui-listview-inset ui-corner-all ui-shadow" data-inset="true" data-role="listview">'+
+					'<li class="ui-li ui-li-static ui-btn-up-c ui-corner-top">'+
+						'<h3 class="ui-li-heading">'+ toolList[0] + '<br />'+'</h3>'+
+						'<p class="ui-li-desc">'+"Tool/Item Type: "+ toolList[1] + '</p>'+
+						'<p class="ui-li-desc">'+"Make: "+ toolList[2] + '</p>'+
+						'<p class="ui-li-desc">'+"Model Number: "+ toolList[3] + '</p>'+
+						'<p class="ui-li-desc">'+"Serial Number: "+ toolList[4] + '</p>'+
+						'<p class="ui-li-desc">'+"Date Purchased: "+ toolList[5] + '</p>'+
+						'<p class="ui-li-desc">'+"Where Purchased: "+ toolList[6] + '</p>'+
+						'<p class="ui-li-desc">'+"Price: "+ toolList[7] + '</p>'+
+						'<p class="ui-li-desc">'+"Estimated Value: "+ toolList[8] + '</p>'+
+						'<p class="ui-li-desc">'+"Purchase Type: "+ toolList[9] + '</p>'+
+						'<p class="ui-li-desc">'+" Quantity: "+ toolList[10] + '</p>'+
+						'<p class="ui-li-desc">'+"Date Added: "+ toolList[11] + '</p>'+
+						'<p class="ui-li-desc">'+"Additional Notes: "+ toolList[12] + '</p>'+
+					'</li>'+
+				'</ul>'	
+				
+			).appendTo('#displaydata');
+
+			}
+		}
+	});
+	});
 });
