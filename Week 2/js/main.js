@@ -83,26 +83,26 @@ var getData = function(){
 
 var makeItemLinks = function(key, linksLi){
     var editLink = $('<a>');
-		editLink.attr("href", "#additem");
-		editLink.attr("data-role", "button");
-		editLink.attr("data-theme", "b");
-		editLink.attr("data-transition", "slide");
-		editLink.attr("data-direction", "reverse");
-		editLink.attr("style", "padding: 10px");
-		editLink.attr("class", "ui-btn ui-btn-up-b ui-shadow ui-btn-corner-all");
-    	editLink.key = key;
+		editLink.attr("href", "#additem")
+				.attr("data-role", "button")
+				.attr("data-theme", "b")
+				.attr("data-transition", "slide")
+				.attr("data-direction", "reverse")
+				.attr("style", "padding: 10px")
+				.attr("class", "ui-btn ui-btn-up-b ui-shadow ui-btn-corner-all")
+				.key = key;
     var editText = "Edit Item ";
     	editLink.on("click", editItem)
 				.html(editText)
 				.appendTo(linksLi);
 				
     var deleteLink = $('<a>');
-    	deleteLink.attr("href", "#");
-		deleteLink.attr("data-role", "button");
-		deleteLink.attr("data-theme", "b");
-		deleteLink.attr("style", "padding: 10px");
-		deleteLink.attr("class", "ui-btn ui-btn-up-b ui-shadow ui-btn-corner-all");
-    	deleteLink.key = key;
+    	deleteLink.attr("href", "#")
+				  .attr("data-role", "button")
+				  .attr("data-theme", "b")
+				  .attr("style", "padding: 10px")
+				  .attr("class", "ui-btn ui-btn-up-b ui-shadow ui-btn-corner-all")
+				  .key = key;
     var deleteText = "Delete Item";
     	deleteLink.on("click", deleteItem)
 				  .html(deleteText)
@@ -198,3 +198,47 @@ var	deleteItem = function (){
     		alert("Item was not deleted.");
     	}	
 };
+
+$('#displayitem').on('pageinit', function(){
+
+	//json
+	$('#JSON').on('click', function() {
+		$('#displaydata').empty();
+		
+		$.ajax({
+			url: 'xhr/data.json',
+			type: 'GET',
+			dataType: 'json',
+			success: function(result) {
+				for(var i=0, j=result.tools.length; i<j; i++){
+					var tools = result.tools[i];
+					$(''+
+						'<div class="tools">'+
+							'<ul>'+
+								'<li>'+ tools.name +'</li>'+
+								'<li>'+ tools.select +'</li>'+
+								'<li>'+ tools.make +'</li>'+
+								'<li>'+ tools.mnumber +'</li>'+
+								'<li>'+ tools.snumber +'</li>'+
+								'<li>'+ tools.dpurchased +'</li>'+
+								'<li>'+ tools.wpurchased +'</li>'+
+								'<li>'+ tools.price +'</li>'+
+								'<li>'+ tools.ev +'</li>'+
+								'<li>'+ tools.condition +'</li>'+
+								'<li>'+ tools.qty +'</li>'+
+								'<li>'+ tools.dateadded +'</li>'+
+								'<li>'+ tools.notes +'</li>'+
+							'</ul>'+
+						'</div>'
+					).appendTo('#displaydata');
+				};
+				console.log(result);
+			}
+			error: function(result){
+				console.log(result);
+				}
+		});
+		
+	});
+
+});
