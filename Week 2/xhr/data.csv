@@ -1,0 +1,6 @@
+name,select,make,mnumber,snumber,dpurchased,wpurchased,price,ev,consition,qty,dateadded,notes
+Drill Press,Power Tool,Delta,11-550,12345677,2012-7-24,Lowes,$199.99,$199.99,New,1,2012-7-24,nse
+Wrench,Hand Tool,Craftsman,wr789,erfdwws,2012-7-24,Sears,$19.99,$19.99,New,1,2012-7-24,nse
+Miter Saw,Power Tools,Makita,LS1214,ls12141113,2012-7-24,Lowes,$399.99,$399.99,New,1,2012-7-24,
+Router Template Guide Set,Power Tool Accessory,Porter Cable,42000,42000,2012-7-24,Lowes,$19.99,$19.99,New,1,2012-7-24,9-piece set
+Edge Guide,Power Tool Accessory,Porter Cable,42690,42690,2012-7-24,ebay,$14.99,$19.99,Used,1,2012-7-24,nse
