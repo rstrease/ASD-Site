@@ -199,12 +199,12 @@ var	deleteItem = function (){
     	}	
 };
 
-$('#displayitem').on('pageinit', function(){
 
+$("#displayitem").on('pageinit',function(){
 	//json
 	$('#JSON').on('click', function() {
 		$('#displaydata').empty();
-		
+		$('<p>').html('JSON Data').appendTo('#displaydata');
 		$.ajax({
 			url: 'xhr/data.json',
 			type: 'GET',
@@ -213,24 +213,23 @@ $('#displayitem').on('pageinit', function(){
 				for(var i=0, j=result.tools.length; i<j; i++){
 					var tools = result.tools[i];
 					$(''+
-						
-							'<ul>'+
-								'<li>'+
-									"Name: "+ tools.name + '<br />'+
-									"Tool/Item Type: "+ tools.select + '<br />'+
-									"Make: "+ tools.make + '<br />'+
-									"Model Number: "+ tools.mnumber + '<br />'+
-									"Serial Number: "+ tools.snumber + '<br />'+
-									"Date Purchased: "+ tools.dpurchased + '<br />'+
-									"Where Purchased: "+ tools.wpurchased + '<br />'+
-									"Price: "+ tools.price + '<br />'+
-									"Estimated Value: "+ tools.ev + '<br />'+
-									"Purchase Type: "+ tools.condition + '<br />'+
-									" Quantity: "+ tools.qty + '<br />'+
-									"Date Added: "+ tools.dateadded + '<br />'+
-									"Additional Notes: "+ tools.notes +'<br />'+
-								'</li>'+
-							'</ul>'
+						'<ul class="ui-listview ui-listview-inset ui-corner-all ui-shadow" data-inset="true" data-role="listview">'+
+							'<li class="ui-li ui-li-static ui-btn-up-c ui-corner-top">'+
+									'<h3 class="ui-li-heading">'+"Name: "+ tools.name + '<br />'+'</h3>'+
+									'<p class="ui-li-desc">'+"Tool/Item Type: "+ tools.select + '</p>'+
+									'<p class="ui-li-desc">'+"Make: "+ tools.make + '</p>'+
+									'<p class="ui-li-desc">'+"Model Number: "+ tools.mnumber + '</p>'+
+									'<p class="ui-li-desc">'+"Serial Number: "+ tools.snumber + '</p>'+
+									'<p class="ui-li-desc">'+"Date Purchased: "+ tools.dpurchased + '</p>'+
+									'<p class="ui-li-desc">'+"Where Purchased: "+ tools.wpurchased + '</p>'+
+									'<p class="ui-li-desc">'+"Price: "+ tools.price + '</p>'+
+									'<p class="ui-li-desc">'+"Estimated Value: "+ tools.ev + '</p>'+
+									'<p class="ui-li-desc">'+"Purchase Type: "+ tools.condition + '</p>'+
+									'<p class="ui-li-desc">'+" Quantity: "+ tools.qty + '</p>'+
+									'<p class="ui-li-desc">'+"Date Added: "+ tools.dateadded + '</p>'+
+									'<p class="ui-li-desc">'+"Additional Notes: "+ tools.notes + '</p>'+
+							'</li>'+
+						'</ul>'							
 						
 					).appendTo('#displaydata');
 				};
@@ -240,4 +239,67 @@ $('#displayitem').on('pageinit', function(){
 		
 	});
 
+	//XML
+	$('#XML').on('click', function() {
+		$('#displaydata').empty();
+		$('<p>').html('XML Data').appendTo('#displaydata');
+		$.ajax({
+			url: 'xhr/data.xml',
+			type: 'GET',
+			dataType: 'xml',
+			success: function(xml) {
+				$(xml).find("tool").each(function(){
+				
+					var name 		= $(this).find('name').text();
+					var select 		= $(this).find('select').text();
+					var make 		= $(this).find('make').text();
+					var mnumber 	= $(this).find('mnumber').text();
+					var snumber 	= $(this).find('snumber').text();
+					var dpurchased 	= $(this).find('dpurchased').text();
+					var wpurchased 	= $(this).find('wpurchased').text();
+					var price 		= $(this).find('price').text();
+					var ev 			= $(this).find('ev').text();
+					var condition 	= $(this).find('condition').text();
+					var qty 		= $(this).find('qty').text();
+					var dateadded 	= $(this).find('dateadded').text();
+					var notes 		= $(this).find('notes').text();
+					
+					$(''+
+						'<ul class="ui-listview ui-listview-inset ui-corner-all ui-shadow" data-inset="true" data-role="listview">'+
+							'<li class="ui-li ui-li-static ui-btn-up-c ui-corner-top">'+
+								'<h3 class="ui-li-heading">'+"Name: "+ name +'</h3>'+
+								'<p class="ui-li-desc">'+"Tool/Item Type: "+ select + '</p>'+
+								'<p class="ui-li-desc">'+"Make: "+ make + '</p>'+
+								'<p class="ui-li-desc">'+"Model Number: "+ mnumber + '</p>'+
+								'<p class="ui-li-desc">'+"Serial Number: "+ snumber + '</p>'+
+								'<p class="ui-li-desc">'+"Date Purchased: "+ dpurchased + '</p>'+
+								'<p class="ui-li-desc">'+"Where Purchased: "+ wpurchased + '</p>'+
+								'<p class="ui-li-desc">'+"Price: "+ price + '</p>'+
+								'<p class="ui-li-desc">'+"Estimated Value: "+ ev + '</p>'+
+								'<p class="ui-li-desc">'+"Purchase Type: "+ condition + '</p>'+
+								'<p class="ui-li-desc">'+"Quantity: "+ qty + '</p>'+
+								'<p class="ui-li-desc">'+"Date Added: "+ dateadded + '</p>'+
+								'<p class="ui-li-desc">'+"Additional Notes: "+ notes +'</p>'+
+							'</li>'+
+						'</ul>'
+						
+					).appendTo('#displaydata');
+				});
+				console.log(xml);
+			}
+		});
+	});
+	
+	//csv
+	/*$('#CSV').on('click', function() {
+		$('#displaydata').empty();
+		$('<p>').html('CSV Data').appendTo('#displaydata');
+		$.ajax({
+			url: 'xhr/data.csv',
+			type: 'GET',
+			dataType: 'text',
+			success: function(csv) {
+			)};
+		};
+	)};*/
 });
