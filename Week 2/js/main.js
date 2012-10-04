@@ -213,30 +213,29 @@ $('#displayitem').on('pageinit', function(){
 				for(var i=0, j=result.tools.length; i<j; i++){
 					var tools = result.tools[i];
 					$(''+
-						'<div class="tools">'+
+						
 							'<ul>'+
-								'<li>'+ tools.name +'</li>'+
-								'<li>'+ tools.select +'</li>'+
-								'<li>'+ tools.make +'</li>'+
-								'<li>'+ tools.mnumber +'</li>'+
-								'<li>'+ tools.snumber +'</li>'+
-								'<li>'+ tools.dpurchased +'</li>'+
-								'<li>'+ tools.wpurchased +'</li>'+
-								'<li>'+ tools.price +'</li>'+
-								'<li>'+ tools.ev +'</li>'+
-								'<li>'+ tools.condition +'</li>'+
-								'<li>'+ tools.qty +'</li>'+
-								'<li>'+ tools.dateadded +'</li>'+
-								'<li>'+ tools.notes +'</li>'+
-							'</ul>'+
-						'</div>'
+								'<li>'+
+									"Name: "+ tools.name + '<br />'+
+									"Tool/Item Type: "+ tools.select + '<br />'+
+									"Make: "+ tools.make + '<br />'+
+									"Model Number: "+ tools.mnumber + '<br />'+
+									"Serial Number: "+ tools.snumber + '<br />'+
+									"Date Purchased: "+ tools.dpurchased + '<br />'+
+									"Where Purchased: "+ tools.wpurchased + '<br />'+
+									"Price: "+ tools.price + '<br />'+
+									"Estimated Value: "+ tools.ev + '<br />'+
+									"Purchase Type: "+ tools.condition + '<br />'+
+									" Quantity: "+ tools.qty + '<br />'+
+									"Date Added: "+ tools.dateadded + '<br />'+
+									"Additional Notes: "+ tools.notes +'<br />'+
+								'</li>'+
+							'</ul>'
+						
 					).appendTo('#displaydata');
 				};
 				console.log(result);
 			}
-			error: function(result){
-				console.log(result);
-				}
 		});
 		
 	});
