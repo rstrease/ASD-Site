@@ -1,0 +1,78 @@
+{
+	"tools":[{
+		"name": "1 1/2 HP Motor Single Stage 1 Micron Dust Collector",
+		"select": "Power Tool",
+		"make": "Delta",
+		"mnumber": "50-786",
+		"snumber": "42605795",
+		"dpurchased": "2012-7-24",
+		"wpurchased": "Woodcraft",
+		"price": "$199.99",
+		"ev": "$199.99",
+		"condition": "New",
+		"qty": "1",
+		"dateadded": "2012-7-24",
+		"notes": ""
+	},
+	{
+		"name": "SPAX General Woodworking Screw Assortment",
+		"select": "Hardware",
+		"make": "SPAX",
+		"mnumber": "Spax-1",
+		"snumber": "na",
+		"dpurchased": "2012-7-24",
+		"wpurchased": "McFeely's",
+		"price": "$19.99",
+		"ev": "$19.99",
+		"condition": "New",
+		"qty": "75",
+		"dateadded": "2012-7-24",
+		"notes": "#12"
+	},
+	{
+		"name": "14 in. 1 HP Steel Frame Band Saw",
+		"select": "Power Tool",
+		"make": "Delta",
+		"mnumber": "28-400",
+		"snumber": "erfdwws",
+		"dpurchased": "2012-7-24",
+		"wpurchased": "Woodcraft",
+		"price": "$299.99",
+		"ev": "$299.99",
+		"condition": "New",
+		"qty": "1",
+		"dateadded": "2012-7-24",
+		"notes": "nse"
+	},
+	{
+		"name": "Router Template Guide Set",
+		"select": "Power Tool Accessory",
+		"make": "Porter Cable",
+		"mnumber": "42000",
+		"snumber": "4200",
+		"dpurchased": "2012-7-24",
+		"wpurchased": "Lowes",
+		"price": "$19.99",
+		"ev": "$19.99",
+		"condition": "New",
+		"qty": "1",
+		"dateadded": "2012-7-24",
+		"notes": "9-piece set"
+	},
+	{
+		"name": "Edge Guide",
+		"select": "Power Tool Accessory",
+		"make": "Porter Cable",
+		"mnumber": "42690",
+		"snumber": "42690",
+		"dpurchased": "2012-7-24",
+		"wpurchased": "ebay",
+		"price": "$14.99",
+		"ev": "$19.99",
+		"condition": "Used",
+		"qty": "1",
+		"dateadded": "2012-7-24",
+		"notes": "nse"
+	}
+	]
+}

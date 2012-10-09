@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<alltools>
+
+	<tool>
+		<name>Drill Press</name>
+		<select>Power Tool</select>
+		<make>Delta</make>
+		<mnumber>11-550</mnumber>
+		<snumber>12345677</snumber>
+		<dpurchased>2012-7-24</dpurchased>
+		<wpurchased>Lowes</wpurchased>
+		<price>$199.99</price>
+		<ev>$199.99</ev>
+		<condition>New</condition>
+		<qty>1</qty>
+		<dateadded>2012-7-24</dateadded>
+		<notes>nse</notes>
+	</tool>
+	
+	<tool>
+		<name>Wrench</name>
+		<select>Hand Tool</select>
+		<make>Craftsman</make>
+		<mnumber>wr789</mnumber>
+		<snumber>erfdwws</snumber>
+		<dpurchased>2012-7-24</dpurchased>
+		<wpurchased>Sears</wpurchased>
+		<price>$19.99</price>
+		<ev>$19.99</ev>
+		<condition>New</condition>
+		<qty>1</qty>
+		<dateadded>2012-7-24</dateadded>
+		<notes>nse</notes>
+	</tool>
+	
+	<tool>
+		<name>Miter Saw</name>
+		<select>Power Tool</select>
+		<make>Makita</make>
+		<mnumber>LS1214</mnumber>
+		<snumber>ls12141113</snumber>
+		<dpurchased>2012-7-24</dpurchased>
+		<wpurchased>Lowes</wpurchased>
+		<price>$399.99</price>
+		<ev>$399.99</ev>
+		<condition>New</condition>
+		<qty>1</qty>
+		<dateadded>2012-7-24</dateadded>
+		<notes> </notes>
+	</tool>
+	
+	<tool>
+		<name>Router Template Guide Set</name>
+		<select>Power Tool Accessory</select>
+		<make>Porter Cable</make>
+		<mnumber>42000</mnumber>
+		<snumber>42000</snumber>
+		<dpurchased>2012-7-24</dpurchased>
+		<wpurchased>Lowes</wpurchased>
+		<price>$19.99</price>
+		<ev>$19.99</ev>
+		<condition>New</condition>
+		<qty>1</qty>
+		<dateadded>2012-7-24</dateadded>
+		<notes>9-piece set</notes>
+	</tool>
+	
+	<tool>
+		<name>Edge Guide</name>
+		<select>Power Tool Accessory</select>
+		<make>Porter Cable</make>
+		<mnumber>42690</mnumber>
+		<snumber>42690</snumber>
+		<dpurchased>2012-7-24</dpurchased>
+		<wpurchased>ebay</wpurchased>
+		<price>$14.99</price>
+		<ev>$19.99</ev>
+		<condition>Used</condition>
+		<qty>1</qty>
+		<dateadded>2012-7-24</dateadded>
+		<notes>nse</notes>
+	</tool>
+	
+</alltools>
