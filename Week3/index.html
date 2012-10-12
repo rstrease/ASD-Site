@@ -44,7 +44,7 @@
 					<li data-theme="c"><a href="#all" data-transition="slide"><img src="images/alltools.png"/>All Tools</a></li>
                     <li data-theme="c"><a href="#handtools" data-transition="slide"><img src="images/handtools.png"/>Hand Tools</a></li>
                     <li data-theme="c"><a href="#ptools" data-transition="slide"><img src="images/powertools.png"/>Power Tools</a></li>
-                    <li data-theme="c"><a href="#ptoolacc" data-transition="slide"><img src="images/ptoolacc.png"/>Power Tool Accessories</a></li>
+                    <li data-theme="c"><a href="#ptoolacc" data-transition="slide"><img src="images/ptoolacc.png"/>Accessories</a></li>
                     <li data-theme="c"><a href="#hardware" data-transition="slide"><img src="images/hardware1.png"/>Hardware</a></li>
                     <li data-theme="c"><a href="#lumber" data-transition="slide"><img src="images/lumber1.png"/>Lumber</a></li>
                 </ul>
@@ -58,7 +58,7 @@
 						<ul>
 							<li><a href="#home" data-theme="b" data-icon="home" data-transition="slide" class="ui-btn-active">Home</a></li>
 							<li><a href="#additem" data-theme="b" data-icon="plus" data-transition="slide">New Item</a></li>
-							<li><a href="#displayitem" data-theme="b" data-icon="gear" data-transition="slide">Display</a></li>
+							<li><a href="#rss" data-theme="b" data-icon="gear" data-transition="slide">RSS Feed</a></li>
 							<li><a href="#about" data-theme="b" data-icon="info" data-transition="slide">Info</a></li>
 						</ul>
 					</div>
@@ -79,7 +79,7 @@
 			<div style="width: 100%; height: 200px; position: relative; background-color: #fbfbfb; border-radius: 8px; border: 1px solid #b8b8b8; -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, .3); box-shadow: 0 1px 4px rgba(0, 0, 0, .3); text-align: center;">
             	<p align="center" style="padding-left: 15px; padding-right: 15px;">Fill out and submit to store tool. Hit the display data button for results.</p>
             	<img src="images/tools.png" alt="image" width="245px"/>
-				<div id="displayA" style="margin-top: 15px; margin-left: 25px; margin-right: 25px;">
+				<div id="display" style="margin-top: 15px; margin-left: 25px; margin-right: 25px;">
                 	<a href="#displayitem" data-theme="b" data-role="button" data-transition="slide">Display Data</a>
             	</div>
 			</div>
@@ -100,7 +100,7 @@
 							<option data-placeholder="selection" value>Please Select Type...</option>
 							<option value="handtool">Hand Tool</option>
 							<option value="powertool">Power Tool</option>
-							<option value="powertoolacc">Power Tool Accessory</option>
+							<option value="powertoolacc">Accessory</option>
 							<option value="hardware">Hardware</option>
 							<option value="lumber">Lumber</option>
 						</select>
@@ -201,7 +201,7 @@
 					<ul>
 						<li><a href="#home" data-theme="b" data-icon="home" data-transition="slide" class="ui-btn-active">Home</a></li>
 						<li><a href="#additem" data-theme="b" data-icon="plus" data-transition="slide">New Item</a></li>
-						<li><a href="#displayitem" data-theme="b" data-icon="gear" data-transition="slide">Display</a></li>
+						<li><a href="#rss" data-theme="b" data-icon="gear" data-transition="slide">RSS Feed</a></li>
 						<li><a href="#about" data-theme="b" data-icon="info" data-transition="slide">Info</a></li>
 					</ul>
 				</div>
@@ -217,16 +217,13 @@
         </div>
 
         <div data-role="content" style="padding: 15px">
-			<div class="ui-grid-b">
-                <div class="ui-block-a">
-					<a id="JSON" data-role="button" data-theme="b" href="#">JSON</a>
-				</div>
-				<div class="ui-block-b">
-					<a id="XML" data-role="button" data-theme="b" href="#">XML</a>
-				</div>
-				<div class="ui-block-c">
-					<a id="CSV" data-role="button" data-theme="b" href="#">CSV</a>
-				</div>
+			<div class="ui-grid-a">
+                <div class="ui-block-a" id="clear">
+                    <a href="#" data-theme="b" data-role="button" data-transition="slide">Clear Data</a>
+                </div>
+                <div class="ui-block-b"  id="addnew">
+                    <a href="#additem" data-theme="b" data-role="button" data-transition="slide">New Item</a>
+                </div>
             </div> 
         </div>
 		
@@ -238,7 +235,7 @@
 				<ul>
 					<li><a href="#home" data-theme="b" data-icon="home" data-transition="slide" class="ui-btn-active">Home</a></li>
 					<li><a href="#additem" data-theme="b" data-icon="plus" data-transition="slide">New Item</a></li>
-					<li><a href="#displayitem" data-theme="b" data-icon="gear" data-transition="slide">Display</a></li>
+					<li><a href="#rss" data-theme="b" data-icon="gear" data-transition="slide">RSS Feed</a></li>
 					<li><a href="#about" data-theme="b" data-icon="info" data-transition="slide">Info</a></li>
 				</ul>
 			</div>
@@ -254,7 +251,7 @@
 
         <div data-role="content" style="padding: 15px">
             <br />
-			<ul data-divider-theme="b" data-filter="true" data-inset="true" data-role="listview">
+			<ul id="alldata" data-divider-theme="b" data-filter="true" data-inset="true" data-role="listview">
                 
             </ul>
 			<div data-role="footer" data-position="fixed" data-id="home">
@@ -262,7 +259,7 @@
 						<ul>
 							<li><a href="#home" data-theme="b" data-icon="home" data-transition="slide" class="ui-btn-active">Home</a></li>
 							<li><a href="#additem" data-theme="b" data-icon="plus" data-transition="slide">New Item</a></li>
-							<li><a href="#displayitem" data-theme="b" data-icon="gear" data-transition="slide">Display</a></li>
+							<li><a href="#rss" data-theme="b" data-icon="gear" data-transition="slide">RSS Feed</a></li>
 							<li><a href="#about" data-theme="b" data-icon="info" data-transition="slide">Info</a></li>
 						</ul>
 					</div>
@@ -287,7 +284,7 @@
 						<ul>
 							<li><a href="#home" data-theme="b" data-icon="home" data-transition="slide" class="ui-btn-active">Home</a></li>
 							<li><a href="#additem" data-theme="b" data-icon="plus" data-transition="slide">New Item</a></li>
-							<li><a href="#displayitem" data-theme="b" data-icon="gear" data-transition="slide">Display</a></li>
+							<li><a href="#rss" data-theme="b" data-icon="gear" data-transition="slide">RSS Feed</a></li>
 							<li><a href="#about" data-theme="b" data-icon="info" data-transition="slide">Info</a></li>
 						</ul>
 					</div>
@@ -311,12 +308,12 @@
 					<div data-role="navbar" data-iconpos="top">
 						<ul>
 							<li><a href="#home" data-theme="b" data-icon="home" data-transition="slide" class="ui-btn-active">Home</a></li>
-						<li><a href="#additem" data-theme="b" data-icon="plus" data-transition="slide">New Item</a></li>
-						<li><a href="#displayitem" data-theme="b" data-icon="gear" data-transition="slide">Display</a></li>
-						<li><a href="#about" data-theme="b" data-icon="info" data-transition="slide">Info</a></li>
+							<li><a href="#additem" data-theme="b" data-icon="plus" data-transition="slide">New Item</a></li>
+							<li><a href="#rss" data-theme="b" data-icon="gear" data-transition="slide">RSS Feed</a></li>
+							<li><a href="#about" data-theme="b" data-icon="info" data-transition="slide">Info</a></li>
 						</ul>
 					</div>
-				</div>
+			</div>
         </div>
     </div>
 
@@ -324,7 +321,7 @@
     <div data-role="page" data-theme="b" id="ptoolacc">
         <div data-position="fixed" data-role="header" data-theme="b">
             <a href="#home" data-icon="back" data-rel="back">Back</a>
-            <h1>Power Tool Accessories</h1>
+            <h1>Accessories</h1>
         </div>
 
         <div data-role="content" style="padding: 15px">
@@ -336,9 +333,9 @@
 					<div data-role="navbar" data-iconpos="top">
 						<ul>
 							<li><a href="#home" data-theme="b" data-icon="home" data-transition="slide" class="ui-btn-active">Home</a></li>
-						<li><a href="#additem" data-theme="b" data-icon="plus" data-transition="slide">New Item</a></li>
-						<li><a href="#displayitem" data-theme="b" data-icon="gear" data-transition="slide">Display</a></li>
-						<li><a href="#about" data-theme="b" data-icon="info" data-transition="slide">Info</a></li>
+							<li><a href="#additem" data-theme="b" data-icon="plus" data-transition="slide">New Item</a></li>
+							<li><a href="#rss" data-theme="b" data-icon="gear" data-transition="slide">RSS Feed</a></li>
+							<li><a href="#about" data-theme="b" data-icon="info" data-transition="slide">Info</a></li>
 						</ul>
 					</div>
 				</div>
@@ -360,10 +357,10 @@
 			<div data-role="footer" data-position="fixed" data-id="home">
 					<div data-role="navbar" data-iconpos="top">
 						<ul>
-						<li><a href="#home" data-theme="b" data-icon="home" data-transition="slide" class="ui-btn-active">Home</a></li>
-						<li><a href="#additem" data-theme="b" data-icon="plus" data-transition="slide">New Item</a></li>
-						<li><a href="#displayitem" data-theme="b" data-icon="gear" data-transition="slide">Display</a></li>
-						<li><a href="#about" data-theme="b" data-icon="info" data-transition="slide">Info</a></li>
+							<li><a href="#home" data-theme="b" data-icon="home" data-transition="slide" class="ui-btn-active">Home</a></li>
+							<li><a href="#additem" data-theme="b" data-icon="plus" data-transition="slide">New Item</a></li>
+							<li><a href="#rss" data-theme="b" data-icon="gear" data-transition="slide">RSS Feed</a></li>
+							<li><a href="#about" data-theme="b" data-icon="info" data-transition="slide">Info</a></li>
 						</ul>
 					</div>
 				</div>
@@ -385,10 +382,10 @@
 			<div data-role="footer" data-position="fixed" data-id="home">
 					<div data-role="navbar" data-iconpos="top">
 						<ul>
-						<li><a href="#home" data-theme="b" data-icon="home" data-transition="slide" class="ui-btn-active">Home</a></li>
-						<li><a href="#additem" data-theme="b" data-icon="plus" data-transition="slide">New Item</a></li>
-						<li><a href="#displayitem" data-theme="b" data-icon="gear" data-transition="slide">Display</a></li>
-						<li><a href="#about" data-theme="b" data-icon="info" data-transition="slide">Info</a></li>
+							<li><a href="#home" data-theme="b" data-icon="home" data-transition="slide" class="ui-btn-active">Home</a></li>
+							<li><a href="#additem" data-theme="b" data-icon="plus" data-transition="slide">New Item</a></li>
+							<li><a href="#rss" data-theme="b" data-icon="gear" data-transition="slide">RSS Feed</a></li>
+							<li><a href="#about" data-theme="b" data-icon="info" data-transition="slide">Info</a></li>
 						</ul>
 					</div>
 				</div>
@@ -410,7 +407,7 @@
 				<ul>
 					<li><a href="#home" data-theme="b" data-icon="home" data-transition="slide" class="ui-btn-active">Home</a></li>
 					<li><a href="#additem" data-theme="b" data-icon="plus" data-transition="slide">New Item</a></li>
-					<li><a href="#displayitem" data-theme="b" data-icon="gear" data-transition="slide">Display</a></li>
+					<li><a href="#rss" data-theme="b" data-icon="gear" data-transition="slide">RSS Feed</a></li>
 					<li><a href="#about" data-theme="b" data-icon="info" data-transition="slide">Info</a></li>
 				</ul>
 			</div>
@@ -435,7 +432,7 @@
 				<ul>
 					<li><a href="#home" data-theme="b" data-icon="home" data-transition="slide" class="ui-btn-active">Home</a></li>
 					<li><a href="#additem" data-theme="b" data-icon="plus" data-transition="slide">New Item</a></li>
-					<li><a href="#displayitem" data-theme="b" data-icon="gear" data-transition="slide">Display</a></li>
+					<li><a href="#rss" data-theme="b" data-icon="gear" data-transition="slide">RSS Feed</a></li>
 					<li><a href="#about" data-theme="b" data-icon="info" data-transition="slide">Info</a></li>
 				</ul>
 			</div>
