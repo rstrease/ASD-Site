@@ -1,0 +1,10 @@
+{
+  "env": {
+    "local": {
+      "db": "http://127.0.0.1:5984/asdcouch"
+    },
+    "cloudant": {
+      "db": "https://cerrietrultionityralwask:mfnck1Fjx2UUUOhkioESQqxl@rstrease.cloudant.com/shopinventory"
+    }
+  }
+}
