@@ -55,12 +55,15 @@ var getData = function(){
 	        makeDiv.attr("id", "items");
 	        var makeList = $('<div>');
 	        makeList.attr("id", "ulList");
+	        makeList.attr("data-inset", "true"); 
+	        makeList.attr("data-role", "listview");
 	        makeList.appendTo(makeDiv);
 			$('#displaydata').append(makeDiv);
 			$('#items').show();
 	        for(var i=0, len=localStorage.length; i<len; i++){
 	            var makeLi = $('<li>');
 	            makeLi.attr("id", "mainLi");
+	            makeLi.attr("class", "ui-li ui-li-static ui-btn-up-c");
 	            var linksLi = $('<li>');
 	            linksLi.attr("id", "editDeleteLi");
 	            makeList.append(makeLi);
@@ -198,149 +201,3 @@ var	deleteItem = function (){
     		alert("Item was not deleted.");
     	}	
 };
-
-
-$("#displayitem").on('pageinit',function(){
-	//json
-	$('#JSON').on('click', function() {
-		$('#displaydata').empty();
-		$('<h3>').html('JSON Data').appendTo('#displaydata');
-		$.ajax({
-			url: 'xhr/data.json',
-			type: 'GET',
-			dataType: 'json',
-			success: function(result) {
-				for(var i=0, j=result.tools.length; i<j; i++){
-					var tools = result.tools[i];
-					$(''+
-						'<ul class="ui-listview ui-listview-inset ui-corner-all ui-shadow" data-inset="true" data-role="listview">'+
-							'<li class="ui-li ui-li-static ui-btn-up-c ui-corner-top">'+
-									'<h3 class="ui-li-heading">'+ tools.name + '<br />'+'</h3>'+
-									'<p class="ui-li-desc">'+"Tool/Item Type: "+ tools.select + '</p>'+
-									'<p class="ui-li-desc">'+"Make: "+ tools.make + '</p>'+
-									'<p class="ui-li-desc">'+"Model Number: "+ tools.mnumber + '</p>'+
-									'<p class="ui-li-desc">'+"Serial Number: "+ tools.snumber + '</p>'+
-									'<p class="ui-li-desc">'+"Date Purchased: "+ tools.dpurchased + '</p>'+
-									'<p class="ui-li-desc">'+"Where Purchased: "+ tools.wpurchased + '</p>'+
-									'<p class="ui-li-desc">'+"Price: "+ tools.price + '</p>'+
-									'<p class="ui-li-desc">'+"Estimated Value: "+ tools.ev + '</p>'+
-									'<p class="ui-li-desc">'+"Purchase Type: "+ tools.condition + '</p>'+
-									'<p class="ui-li-desc">'+" Quantity: "+ tools.qty + '</p>'+
-									'<p class="ui-li-desc">'+"Date Added: "+ tools.dateadded + '</p>'+
-									'<p class="ui-li-desc">'+"Additional Notes: "+ tools.notes + '</p>'+
-							'</li>'+
-						'</ul>'							
-						
-					).appendTo('#displaydata');
-				};
-				console.log(result);
-			}
-		});
-		
-	});
-
-	//XML
-	$('#XML').on('click', function() {
-		$('#displaydata').empty();
-		$('<h3>').html('XML Data').appendTo('#displaydata');
-		$.ajax({
-			url: 'xhr/data.xml',
-			type: 'GET',
-			dataType: 'xml',
-			success: function(xml) {
-				$(xml).find("tool").each(function(){
-				
-					var name 		= $(this).find('name').text();
-					var select 		= $(this).find('select').text();
-					var make 		= $(this).find('make').text();
-					var mnumber 	= $(this).find('mnumber').text();
-					var snumber 	= $(this).find('snumber').text();
-					var dpurchased 	= $(this).find('dpurchased').text();
-					var wpurchased 	= $(this).find('wpurchased').text();
-					var price 		= $(this).find('price').text();
-					var ev 			= $(this).find('ev').text();
-					var condition 	= $(this).find('condition').text();
-					var qty 		= $(this).find('qty').text();
-					var dateadded 	= $(this).find('dateadded').text();
-					var notes 		= $(this).find('notes').text();
-					
-					$(''+
-						'<ul class="ui-listview ui-listview-inset ui-corner-all ui-shadow" data-inset="true" data-role="listview">'+
-							'<li class="ui-li ui-li-static ui-btn-up-c ui-corner-top">'+
-								'<h3 class="ui-li-heading">'+ name +'</h3>'+
-								'<p class="ui-li-desc">'+"Tool/Item Type: "+ select + '</p>'+
-								'<p class="ui-li-desc">'+"Make: "+ make + '</p>'+
-								'<p class="ui-li-desc">'+"Model Number: "+ mnumber + '</p>'+
-								'<p class="ui-li-desc">'+"Serial Number: "+ snumber + '</p>'+
-								'<p class="ui-li-desc">'+"Date Purchased: "+ dpurchased + '</p>'+
-								'<p class="ui-li-desc">'+"Where Purchased: "+ wpurchased + '</p>'+
-								'<p class="ui-li-desc">'+"Price: "+ price + '</p>'+
-								'<p class="ui-li-desc">'+"Estimated Value: "+ ev + '</p>'+
-								'<p class="ui-li-desc">'+"Purchase Type: "+ condition + '</p>'+
-								'<p class="ui-li-desc">'+"Quantity: "+ qty + '</p>'+
-								'<p class="ui-li-desc">'+"Date Added: "+ dateadded + '</p>'+
-								'<p class="ui-li-desc">'+"Additional Notes: "+ notes +'</p>'+
-							'</li>'+
-						'</ul>'
-						
-					).appendTo('#displaydata');
-				});
-				console.log(xml);
-			}
-		});
-	});
-	
-//CSV Data
-	$('#CSV').bind('click', function(){
-		$('#displaydata').empty();
-		$('<h3>').html('CSV Data').appendTo('#displaydata');
-		$.ajax({
-			type: "GET",
-			url: "xhr/data.csv",
-			dataType: "text",
-			success: function(data) {
-				var allTextLines = data.split(/\r\n|\n/);
-				var headers = allTextLines[0].split(',');
-				var lines = []; 
-
-			for (var i=1; i<allTextLines.length; i++) {
-				var data = allTextLines[i].split(',');
-			if (data.length == headers.length) {
-				var tools = []; 
-
-				for (var j=0; j<headers.length; j++) {
-					tools.push(data[j]);
-				}
-					lines.push(tools);
-				}	
-
-			}
-
-			for (var m=0; m<lines.length; m++){
-				var toolList = lines[m];
-			$(''+
-				'<ul class="ui-listview ui-listview-inset ui-corner-all ui-shadow" data-inset="true" data-role="listview">'+
-					'<li class="ui-li ui-li-static ui-btn-up-c ui-corner-top">'+
-						'<h3 class="ui-li-heading">'+ toolList[0] + '<br />'+'</h3>'+
-						'<p class="ui-li-desc">'+"Tool/Item Type: "+ toolList[1] + '</p>'+
-						'<p class="ui-li-desc">'+"Make: "+ toolList[2] + '</p>'+
-						'<p class="ui-li-desc">'+"Model Number: "+ toolList[3] + '</p>'+
-						'<p class="ui-li-desc">'+"Serial Number: "+ toolList[4] + '</p>'+
-						'<p class="ui-li-desc">'+"Date Purchased: "+ toolList[5] + '</p>'+
-						'<p class="ui-li-desc">'+"Where Purchased: "+ toolList[6] + '</p>'+
-						'<p class="ui-li-desc">'+"Price: "+ toolList[7] + '</p>'+
-						'<p class="ui-li-desc">'+"Estimated Value: "+ toolList[8] + '</p>'+
-						'<p class="ui-li-desc">'+"Purchase Type: "+ toolList[9] + '</p>'+
-						'<p class="ui-li-desc">'+" Quantity: "+ toolList[10] + '</p>'+
-						'<p class="ui-li-desc">'+"Date Added: "+ toolList[11] + '</p>'+
-						'<p class="ui-li-desc">'+"Additional Notes: "+ toolList[12] + '</p>'+
-					'</li>'+
-				'</ul>'	
-				
-			).appendTo('#displaydata');
-
-			}
-		}
-	});
-	});
-});
